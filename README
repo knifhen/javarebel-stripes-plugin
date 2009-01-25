@@ -1,0 +1,30 @@
+JavaRebel Stripes plugin
+========================
+
+Sample Maven 2 configuration
+----------------------------
+    
+    <profiles>
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            
+            <dependencies>
+                <dependency>
+                    <groupId>se.knifhen</groupId>
+                    <artifactId>javarebel-stripes-plugin</artifactId>
+                    <version>1.0.1</version>
+                </dependency>
+            </dependencies>
+            
+        </profile>
+   </profiles>
+   
+
+Know limitations
+----------------
+The plugin does not work with custom ActionResolver implementations.
+
+The plugin will only reload ActionBeans.
