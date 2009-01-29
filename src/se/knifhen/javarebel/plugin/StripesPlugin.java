@@ -22,6 +22,7 @@ public class StripesPlugin implements Plugin {
 
 		IntegrationFactory.getInstance().addIntegrationProcessor("net.sourceforge.stripes.controller.NameBasedActionResolver", new NameBasedActionResolverBytecodeProcessor());
 		IntegrationFactory.getInstance().addIntegrationProcessor("net.sourceforge.stripes.controller.UrlBindingFactory", new UrlBindingFactoryBytecodeProcessor());
+		IntegrationFactory.getInstance().addIntegrationProcessor("net.sourceforge.stripes.integration.spring.SpringInterceptor", new SpringInterceptorBytecodeProcessor());
 	}
 
 	/**

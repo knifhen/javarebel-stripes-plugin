@@ -14,7 +14,7 @@ import org.zeroturnaround.javarebel.integration.support.JavassistClassBytecodePr
  *    
  * @author Andreas Knifh
  */
-public class UrlBindingFactoryBytecodeProcessor  extends JavassistClassBytecodeProcessor {
+public class UrlBindingFactoryBytecodeProcessor extends JavassistClassBytecodeProcessor {
 
 	/**
 	 * Applies changes to <code>UrlBindingFactory</code> to make Stripes always extract the correct urlBinding from each <code>ActionBean</code>. 
