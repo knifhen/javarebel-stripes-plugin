@@ -1,5 +1,6 @@
 JavaRebel Stripes plugin
 ========================
+Plugin to hotswap Stripes ActionBeans
 
 Sample Maven 2 configuration
 ----------------------------
@@ -23,7 +24,7 @@ Sample Maven 2 configuration
    </profiles>
    
 
-Know limitations
+Known limitations
 ----------------
 The plugin does not work with custom ActionResolver implementations.
 
