@@ -30,7 +30,7 @@ Sample Maven 2 configuration
                 <dependency>
                     <groupId>se.knifhen</groupId>
                     <artifactId>javarebel-stripes-plugin</artifactId>
-                    <version>1.0.1</version>
+                    <version>1.0.2</version>
                 </dependency>
             </dependencies>
             
