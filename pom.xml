@@ -13,7 +13,14 @@
 			<url>http://repos.zeroturnaround.com/maven2</url>
 		</repository>
 	</repositories>
-
+	<distributionManagement>
+		<repository>
+			<id>zt-repo</id>
+			<name>Zero turnaround repo</name>
+			<url>dav:http://repos.zeroturnaround.com/maven2</url>
+			<layout>default</layout>
+		</repository>
+	</distributionManagement>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
