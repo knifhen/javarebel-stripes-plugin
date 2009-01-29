@@ -5,6 +5,8 @@ Plugin to hotswap Stripes ActionBeans.
 The latest source can be found at
 http://github.com/knifhen/javarebel-stripes-plugin/tree/master
 
+This plugin was inspired by the Stripes-Reload extensions.
+http://www.stripesbook.org/stripes-reload.html
 
 
 Sample Maven 2 configuration
