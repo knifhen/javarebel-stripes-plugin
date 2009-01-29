@@ -1,10 +1,24 @@
 JavaRebel Stripes plugin
 ========================
-Plugin to hotswap Stripes ActionBeans
+Plugin to hotswap Stripes ActionBeans.
+
+The latest source can be found at
+http://github.com/knifhen/javarebel-stripes-plugin/tree/master
+
+
 
 Sample Maven 2 configuration
 ----------------------------
     
+    <repositories>
+        <repository>
+            <id>zt-repo</id>
+            <url>http://repos.zeroturnaround.com/maven2</url>
+        </repository>
+    </repositories>
+
+    ...
+
     <profiles>
         <profile>
             <id>development</id>
@@ -22,11 +36,13 @@ Sample Maven 2 configuration
             
         </profile>
    </profiles>
+
    
 
 Known limitations
-----------------
-The plugin does not work with custom ActionResolver implementations.
+-----------------
 
-The plugin will only reload ActionBeans.
-@SpringBean annotation will not be reloaded.
+* The plugin does not work with custom ActionResolver implementations.
+* The plugin will only reload ActionBeans.
+* @SpringBean annotation will not be reloaded.
+
