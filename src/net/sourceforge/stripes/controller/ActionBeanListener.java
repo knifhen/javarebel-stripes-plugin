@@ -46,4 +46,10 @@ public class ActionBeanListener implements ClassEventListener {
         }
 
     }
+
+	@Override
+	public int priority() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
