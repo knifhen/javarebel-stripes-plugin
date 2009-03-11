@@ -12,6 +12,9 @@ import org.zeroturnaround.javarebel.integration.support.JavassistClassBytecodePr
  * The original would first look in a cache for any previous urlBindings for an <code>ActionBean</code>. This however
  * prevented ActionBeans from rebinding to another urlBinding.
  *    
+ * TODO Clear pathCache 
+ *  
+ *    
  * @author Andreas Knifh
  */
 public class UrlBindingFactoryBytecodeProcessor extends JavassistClassBytecodeProcessor {
@@ -31,6 +34,7 @@ public class UrlBindingFactoryBytecodeProcessor extends JavassistClassBytecodePr
 		CtMethod getBindingPrototype = urlBindingFactory.getDeclaredMethod("getBindingPrototype", new CtClass[] {cp.get("java.lang.Class")});
 		getBindingPrototype.setBody("" +
 			"{" +
+			"	pathCache.clear();" +
 			"	net.sourceforge.stripes.controller.UrlBinding binding = parseUrlBinding($1);" +
 			"	if (binding != null)" +
 			"		addBinding($1, binding);" +
