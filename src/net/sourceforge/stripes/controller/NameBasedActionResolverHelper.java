@@ -10,6 +10,7 @@ import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.exception.ActionBeanNotFoundException;
 import net.sourceforge.stripes.exception.StripesServletException;
 import net.sourceforge.stripes.util.Log;
+import net.sourceforge.stripes.util.bean.ParseException;
 
 /**
  * This is a helper class for the <code>NameBasedActionResolver</code>.
@@ -207,9 +208,14 @@ public class NameBasedActionResolverHelper {
 		log.debug("rescanFor: ", urlBinding);
 		Set<Class<? extends ActionBean>> classes = nameBasedActionResolver.findClasses();
 		for (Class<? extends ActionBean> cls : classes) {
-			if (urlBinding.equals(nameBasedActionResolver.getUrlBinding(cls))) {
-				nameBasedActionResolver.addActionBean(cls);
-				return cls;
+			//FIXME Note this causes a problem when rescanning during tests and there are classes with bad urlBindings.
+			try {
+				if (urlBinding.equals(nameBasedActionResolver.getUrlBinding(cls))) {
+					nameBasedActionResolver.addActionBean(cls);
+					return cls;
+				}
+			} catch (ParseException e) {
+				log.debug("Ignoring ParseException");
 			}
 		}
 		return null;
