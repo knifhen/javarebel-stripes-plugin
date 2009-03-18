@@ -2,6 +2,7 @@ package se.knifhen.javarebel.plugin;
 
 
 import org.zeroturnaround.javarebel.ClassResourceSource;
+import org.zeroturnaround.javarebel.Integration;
 import org.zeroturnaround.javarebel.IntegrationFactory;
 import org.zeroturnaround.javarebel.Plugin;
 
@@ -15,9 +16,11 @@ public class StripesPlugin implements Plugin {
 	 * Adds the IntegrationProcessors.
 	 */
 	public void preinit() {
-		IntegrationFactory.getInstance().addIntegrationProcessor("net.sourceforge.stripes.controller.NameBasedActionResolver", new NameBasedActionResolverBytecodeProcessor());
-		IntegrationFactory.getInstance().addIntegrationProcessor("net.sourceforge.stripes.controller.UrlBindingFactory", new UrlBindingFactoryBytecodeProcessor());
-		IntegrationFactory.getInstance().addIntegrationProcessor("net.sourceforge.stripes.integration.spring.SpringHelper", new SpringHelperBytecodeProcessor());
+		Integration integrationFactory = IntegrationFactory.getInstance();
+		ClassLoader classLoader = StripesPlugin.class.getClassLoader();
+		integrationFactory.addIntegrationProcessor(classLoader, "net.sourceforge.stripes.controller.NameBasedActionResolver", new NameBasedActionResolverBytecodeProcessor());
+		integrationFactory.addIntegrationProcessor(classLoader, "net.sourceforge.stripes.controller.UrlBindingFactory", new UrlBindingFactoryBytecodeProcessor());
+		integrationFactory.addIntegrationProcessor(classLoader, "net.sourceforge.stripes.integration.spring.SpringHelper", new SpringHelperBytecodeProcessor());
 	}
 
 	public boolean checkDependencies(ClassLoader cl, ClassResourceSource crs) {
