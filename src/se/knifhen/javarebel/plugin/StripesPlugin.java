@@ -36,7 +36,7 @@ public class StripesPlugin implements Plugin {
 	}
 
 	public String getName() {
-		return "Stripes plugin 1.0.9";
+		return "Stripes plugin 1.0.10";
 	}
 	
 	public String getAuthor() {
