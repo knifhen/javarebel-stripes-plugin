@@ -5,7 +5,7 @@
 	<groupId>se.knifhen</groupId>
 	<artifactId>javarebel-stripes-plugin</artifactId>
 	<name>JavaRebel Stripes Plugin</name>
-	<version>1.0.12-SNAPSHOT</version>
+	<version>1.0.13-SNAPSHOT</version>
 
 	<repositories>
 		<repository>
