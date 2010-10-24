@@ -1,10 +1,13 @@
 package se.knifhen.javarebel.plugin;
 
+import net.sourceforge.stripes.controller.UrlBindingFactoryProvider;
+
 import org.zeroturnaround.bundled.javassist.CannotCompileException;
 import org.zeroturnaround.bundled.javassist.ClassPool;
 import org.zeroturnaround.bundled.javassist.CtClass;
 import org.zeroturnaround.bundled.javassist.CtField;
 import org.zeroturnaround.bundled.javassist.CtMethod;
+import org.zeroturnaround.bundled.javassist.CtNewMethod;
 import org.zeroturnaround.bundled.javassist.NotFoundException;
 import org.zeroturnaround.javarebel.integration.support.JavassistClassBytecodeProcessor;
 
@@ -32,6 +35,7 @@ public class NameBasedActionResolverBytecodeProcessor extends JavassistClassByte
 		makeNewActionBean();
 		getActionBean();
 		getActionBeanType();
+		implementUrlBindingFactoryProvider(cp, ctClass);
 	}
 
 	/**
@@ -93,4 +97,27 @@ public class NameBasedActionResolverBytecodeProcessor extends JavassistClassByte
 		);
 		nameBasedActionResolver.addMethod(getActionBeanType);
 	}
+
+	/**
+	 * Add method to get access to UrlBindingFactory used by this action resolver
+	 */
+	private void implementUrlBindingFactoryProvider(ClassPool cp, CtClass ctClass) throws CannotCompileException, NotFoundException {
+	  cp.importPackage("net.sourceforge.stripes.controller");
+
+	  try {
+	    // exists since stripes 1.5.4
+	    ctClass.getMethod("getUrlBindingFactory", "()Lnet/sourceforge/stripes/controller/UrlBindingFactory;");
+	  }
+	  catch (NotFoundException e) {
+	    ctClass.addMethod(
+	      CtNewMethod.make(
+	          "public UrlBindingFactory getUrlBindingFactory() {" +
+	          "  return UrlBindingFactory.getInstance();" +
+	          "}", ctClass)
+	    );
+	  }
+
+	  ctClass.addInterface(cp.get(UrlBindingFactoryProvider.class.getName()));
+  }
+	
 }

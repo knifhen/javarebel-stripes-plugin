@@ -66,7 +66,7 @@ public class NameBasedActionResolverHelper {
 
                 if (beanClass == null) {
                     throw new ActionBeanNotFoundException(
-                    		urlBinding, UrlBindingFactory.getInstance().getPathMap());
+                    		urlBinding, getUrlBindingFactory().getPathMap());
                 }
                 
                 if(!nameBasedActionResolver.getUrlBinding(beanClass).equals(urlBinding)) {
@@ -126,7 +126,7 @@ public class NameBasedActionResolverHelper {
 
                 if (beanClass == null) {
                     throw new ActionBeanNotFoundException(
-                    		urlBinding, UrlBindingFactory.getInstance().getPathMap());
+                    		urlBinding, getUrlBindingFactory().getPathMap());
                 }
 
                 String bindingPath = nameBasedActionResolver.getUrlBinding(beanClass);
@@ -183,13 +183,17 @@ public class NameBasedActionResolverHelper {
 	public Class<? extends ActionBean> getActionBeanType(String urlBinding) {
         log.debug("getActionBeanType for urlBinding: ", urlBinding);
 
-        UrlBinding binding = UrlBindingFactory.getInstance().getBindingPrototype(urlBinding);
+        UrlBinding binding = getUrlBindingFactory().getBindingPrototype(urlBinding);
         Class<? extends ActionBean> cls = binding == null ? null : binding.getBeanType();
         if (cls == null && !urlBinding.endsWith(".jsp")) {
             cls = rescanFor(urlBinding);
         }
         return cls;
 	}
+	
+  private UrlBindingFactory getUrlBindingFactory() {
+    return ((UrlBindingFactoryProvider)nameBasedActionResolver).getUrlBindingFactory();
+  }
 	
 	/**
 	 * Redoes the scan that Stripes normally does at startup to find Action

@@ -16,7 +16,6 @@ public class ActionBeanListener implements ClassEventListener {
      * Adds any class that is an <code>ActionBean</code> to the <code>AnnotatedClassActionResolver</code>.
      */
     @SuppressWarnings("unchecked")
-	@Override
     public void onClassEvent(final int eventType, final Class klass) {
 
         if (ClassEventListener.EVENT_LOADED == eventType) {
@@ -47,7 +46,6 @@ public class ActionBeanListener implements ClassEventListener {
 
     }
 
-	@Override
 	public int priority() {
 		// TODO Auto-generated method stub
 		return 0;
